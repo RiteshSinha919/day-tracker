@@ -4,7 +4,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import "./App.css";
 import CustomInput from "./components/CustomInput";
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider>
       <div style={{ height: "50px", width: "400px" }}>
@@ -12,13 +12,12 @@ function App() {
         <PrimaryButton buttonText="new" buttonType="secondary" />
         <CustomInput
           name="name"
-          value="value"
-          type="input"
-          placeholderText="Input"
+          type="text"
+          placeholderText="Enter your name"
         />
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
