@@ -2,13 +2,19 @@ import { makeObservable, observable, action } from "mobx";
 
 class InputStore {
   inputs: Record<string, string> = {};
+  taskBucket: string[] = [];
 
   constructor() {
     makeObservable(this, {
       inputs: observable,
       setInput: action,
       resetInput: action,
+      taskBucket: observable,
+      addTask: action,
     });
+
+    this.taskBucket = [];
+    this.inputs = {};
   }
 
   setInput(key: string, value: string) {
@@ -21,6 +27,11 @@ class InputStore {
 
   resetInput() {
     this.inputs = {};
+  }
+
+  addTask(task: string) {
+    console.log("new", task);
+    this.taskBucket.push(task);
   }
 }
 
