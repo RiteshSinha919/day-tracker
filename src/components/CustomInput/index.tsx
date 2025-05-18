@@ -9,7 +9,7 @@ interface InputProps {
   type: string;
 }
 
-const CustomInput: React.FC<InputProps> = observer((props: InputProps) => {
+const CustomInput: React.FC = observer((props: InputProps) => {
   const { placeholderText, name, type } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

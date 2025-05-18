@@ -18,7 +18,7 @@ export const StyledButton = styled.button`
   color: ${({ type, theme }) =>
     type === "primary"
       ? `${theme.colors.baseWhite}`
-      : `${theme.colors.baseBlack}`};
+      : `${theme.colors.blue600}`};
   font-weight: 500;
   font-family: Roboto, sans-serif;
   letter-spacing: 0.1em;
