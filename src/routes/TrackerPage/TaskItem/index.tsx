@@ -27,13 +27,6 @@ const TaskItem: React.FC = observer((props: TaskItemProps) => {
           submitFunction={() => inputStore.removeTask(taskId)}
         />
       </RemoveButtonContainer>
-      <button
-        onClick={() => {
-          throw new Error("This is your first error!");
-        }}
-      >
-        Break the world
-      </button>
     </TaskItemContainer>
   );
 });

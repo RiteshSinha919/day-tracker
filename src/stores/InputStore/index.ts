@@ -1,5 +1,6 @@
 import { makeObservable, observable, action, reaction } from "mobx";
 import { v4 as uuidv4 } from "uuid";
+import * as Sentry from "@sentry/react";
 
 interface Task {
   taskId: string;
@@ -35,8 +36,11 @@ class InputStore {
       try {
         this.setTaskBucket(JSON.parse(storedTasks));
       } catch (e) {
-        console.error("Failed to parse the localstorage tasks", e);
+        Sentry.captureException(
+          `Error parsing locally stored task bucket: ${e}`
+        );
         this.setTaskBucket([]);
+        console.error("Failed to parse the localstorage tasks", e);
       }
     } else {
       this.setTaskBucket([]);
@@ -76,6 +80,8 @@ class InputStore {
       this.resetInput();
     } else {
       this.setError("Please enter a task");
+      Sentry.setTag("task_name", "AddEmptyTask");
+      Sentry.captureException(new Error("No task entered"));
     }
   }
 
