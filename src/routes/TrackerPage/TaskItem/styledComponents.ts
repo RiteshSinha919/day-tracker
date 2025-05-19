@@ -20,7 +20,7 @@ export const TaskItemContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${(props) => props.theme.colors.grey400};
+  border-bottom: 1px solid ${(props) => props.theme.colors.grey200};
 `;
 
 export const RemoveButtonContainer = styled.div`

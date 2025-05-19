@@ -8,10 +8,10 @@ interface ButtonProps {
 }
 
 const CustomButton: React.FC = (props: ButtonProps) => {
-  const { buttonText, buttonType } = props;
+  const { buttonText, buttonType, submitFunction } = props;
   return (
     <ButtonWrapper>
-      <StyledButton type={buttonType} onClick={props.submitFunction}>
+      <StyledButton type={buttonType} onClick={submitFunction}>
         {buttonText}
       </StyledButton>
     </ButtonWrapper>

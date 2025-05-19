@@ -40,18 +40,19 @@ const TrackerPage: React.FC = observer(() => {
       <TaskAdderContainer>
         <InputConatiner>
           <CustomInput
-            name="name"
+            name="addItem"
             type="text"
             placeholderText={t("enterTaskName")}
+            errorMsg={inputStore.errorMessage}
           />
         </InputConatiner>
         <AddButtonContainer>
           <CustomButton
             buttonText={t("addTask")}
             buttonType="primary"
-            submitFunction={() =>
-              inputStore.addTask(inputStore.getInput("name"))
-            }
+            submitFunction={() => {
+              inputStore.addTask();
+            }}
           />
         </AddButtonContainer>
       </TaskAdderContainer>
@@ -59,7 +60,13 @@ const TrackerPage: React.FC = observer(() => {
   };
 
   const renderTaskItem = () => {
-    return <TaskItem taskName="Creating the new login app" />;
+    return inputStore.taskBucket.map((task) => (
+      <TaskItem
+        key={task.taskId}
+        taskName={task.taskName}
+        taskId={task.taskId}
+      />
+    ));
   };
 
   return (

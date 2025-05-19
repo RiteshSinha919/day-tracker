@@ -6,22 +6,36 @@ import {
 } from "./styledComponents";
 import CustomButton from "../../../components/CustomButton";
 import { useTranslation } from "react-i18next";
+import { inputStore } from "../../../stores/InputStore";
+import { observer } from "mobx-react-lite";
 
 interface TaskItemProps {
+  taskId: string;
   taskName: string;
 }
 
-const TaskItem: React.FC = (props: TaskItemProps) => {
-  const { taskName } = props;
+const TaskItem: React.FC = observer((props: TaskItemProps) => {
+  const { taskName, taskId } = props;
   const { t } = useTranslation();
   return (
     <TaskItemContainer>
       <TaskItemContent>{taskName}</TaskItemContent>
       <RemoveButtonContainer>
-        <CustomButton buttonText={t("removeTask")} buttonType="secondary" />
+        <CustomButton
+          buttonText={t("removeTask")}
+          buttonType="secondary"
+          submitFunction={() => inputStore.removeTask(taskId)}
+        />
       </RemoveButtonContainer>
+      <button
+        onClick={() => {
+          throw new Error("This is your first error!");
+        }}
+      >
+        Break the world
+      </button>
     </TaskItemContainer>
   );
-};
+});
 
 export default TaskItem;
