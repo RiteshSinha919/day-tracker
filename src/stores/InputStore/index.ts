@@ -37,7 +37,7 @@ class InputStore {
         this.setTaskBucket(JSON.parse(storedTasks));
       } catch (e) {
         Sentry.captureException(
-          `Error parsing locally stored task bucket: ${e}`
+          new Error(`Error parsing locally stored task bucket: ${e}`)
         );
         this.setTaskBucket([]);
         console.error("Failed to parse the localstorage tasks", e);
