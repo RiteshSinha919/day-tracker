@@ -12,7 +12,7 @@ import {
   InputConatiner,
 } from "./styledComponents";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../../utils/LanguageSwitchUtils.ts";
+import LanguageSwitcher from "../../utils/LanguageSwitchUtils";
 import { observer } from "mobx-react-lite";
 import { inputStore } from "../../stores/InputStore";
 
@@ -49,7 +49,7 @@ const TrackerPage: React.FC = observer(() => {
         <AddButtonContainer>
           <CustomButton
             buttonText={t("addTask")}
-            buttonType="primary"
+            buttontype="primary"
             submitFunction={() => {
               inputStore.addTask();
             }}

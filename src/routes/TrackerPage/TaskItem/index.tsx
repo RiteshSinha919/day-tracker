@@ -23,7 +23,7 @@ const TaskItem: React.FC = observer((props: TaskItemProps) => {
       <RemoveButtonContainer>
         <CustomButton
           buttonText={t("removeTask")}
-          buttonType="secondary"
+          buttontype="secondary"
           submitFunction={() => inputStore.removeTask(taskId)}
         />
       </RemoveButtonContainer>

@@ -8,15 +8,15 @@ export const ButtonWrapper = styled.div`
 export const StyledButton = styled.button`
   height: 100%;
   width: 100%;
-  border: ${({ type, theme }) =>
-    type === "primary" ? "none" : `1px solid ${theme.colors.blue600}`};
+  border: ${({ buttontype, theme }) =>
+    buttontype === "primary" ? "none" : `1px solid ${theme.colors.blue600}`};
   border-radius: 8px;
-  background-color: ${({ type, theme }) =>
-    type === "primary"
+  background-color: ${({ buttontype, theme }) =>
+    buttontype === "primary"
       ? `${theme.colors.blue600}`
       : `${theme.colors.baseWhite}`};
-  color: ${({ type, theme }) =>
-    type === "primary"
+  color: ${({ buttontype, theme }) =>
+    buttontype === "primary"
       ? `${theme.colors.baseWhite}`
       : `${theme.colors.blue600}`};
   font-weight: 500;

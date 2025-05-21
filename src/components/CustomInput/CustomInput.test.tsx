@@ -1,10 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import CustomInput from './index';
-import { inputStore } from '../../stores/InputStore';
+import React from "react";
 
-// Mock the inputStore
-jest.mock('../../../stores/InputStore', () => ({
+import CustomInput from "./index";
+import { inputStore } from "../../stores/InputStore";
+
+import { render, screen, fireEvent } from "../../utils/ThemeTestUtils";
+
+jest.mock("../../stores/InputStore", () => ({
   inputStore: {
     getInput: jest.fn(),
     setInput: jest.fn(),
@@ -12,79 +13,67 @@ jest.mock('../../../stores/InputStore', () => ({
   },
 }));
 
-describe('CustomInput', () => {
+describe("Test CustomInput", () => {
   beforeEach(() => {
-    // Reset all mocks before each test
     jest.clearAllMocks();
-    (inputStore.getInput as jest.Mock).mockReturnValue('');
+    (inputStore.getInput as jest.Mock).mockReturnValue("");
   });
 
-  it('renders with correct props', () => {
-    // Arrange
+  it("renders with correct props", () => {
     const props = {
-      placeholderText: 'Enter task',
-      name: 'taskInput',
-      type: 'text',
+      placeholderText: "Enter the Task Name",
+      name: "task 1",
+      type: "text",
     };
 
-    // Act
     render(<CustomInput {...props} />);
 
-    // Assert
-    const inputElement = screen.getByPlaceholderText('Enter task');
+    const inputElement = screen.getByPlaceholderText("Enter the Task Name");
     expect(inputElement).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute('type', 'text');
-    expect(inputElement).toHaveAttribute('name', 'taskInput');
+    expect(inputElement).toHaveAttribute("type", "text");
+    expect(inputElement).toHaveAttribute("name", "task 1");
   });
 
-  it('displays error message when provided', () => {
-    // Arrange
+  it("displays error message when provided", () => {
     const props = {
-      placeholderText: 'Enter task',
-      name: 'taskInput',
-      type: 'text',
-      errorMsg: 'This is an error',
+      placeholderText: "Enter task",
+      name: "taskInput",
+      type: "text",
+      errorMsg: "This is an error",
     };
 
-    // Act
     render(<CustomInput {...props} />);
 
-    // Assert
-    expect(screen.getByText('This is an error')).toBeInTheDocument();
+    expect(screen.getByText("This is an error")).toBeInTheDocument();
   });
 
-  it('handles input change correctly', () => {
-    // Arrange
+  it("handles input change correctly", () => {
     const props = {
-      placeholderText: 'Enter task',
-      name: 'taskInput',
-      type: 'text',
+      placeholderText: "Enter task",
+      name: "taskInput",
+      type: "text",
     };
+
     render(<CustomInput {...props} />);
-    const inputElement = screen.getByPlaceholderText('Enter task');
+    const inputElement = screen.getByPlaceholderText("Enter task");
 
-    // Act
-    fireEvent.change(inputElement, { target: { value: 'New Task' } });
+    fireEvent.change(inputElement, { target: { value: "New Task" } });
 
-    // Assert
-    expect(inputStore.setInput).toHaveBeenCalledWith('New Task');
-    expect(inputStore.setError).toHaveBeenCalledWith('');
+    expect(inputStore.setInput).toHaveBeenCalledWith("New Task");
+    expect(inputStore.setError).toHaveBeenCalledWith("");
   });
 
-  it('displays current input value from store', () => {
-    // Arrange
+  it("displays current input value from store", () => {
     const props = {
-      placeholderText: 'Enter task',
-      name: 'taskInput',
-      type: 'text',
+      placeholderText: "Enter task",
+      name: "taskInput",
+      type: "text",
     };
-    (inputStore.getInput as jest.Mock).mockReturnValue('Current Task');
+    (inputStore.getInput as jest.Mock).mockReturnValue("Current Task");
 
-    // Act
     render(<CustomInput {...props} />);
 
-    // Assert
-    const inputElement = screen.getByPlaceholderText('Enter task');
-    expect(inputElement).toHaveValue('Current Task');
+    const inputElement = screen.getByPlaceholderText("Enter task");
+    expect(inputElement).toHaveValue("Current Task");
   });
-}); 
+});

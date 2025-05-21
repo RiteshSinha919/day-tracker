@@ -3,15 +3,15 @@ import { ButtonWrapper, StyledButton } from "./styledComponents";
 
 interface ButtonProps {
   buttonText: string;
-  buttonType: "primary" | "secondary";
-  submitFunction?: () => void;
+  buttontype: "primary" | "secondary";
+  submitFunction: () => void;
 }
 
 const CustomButton: React.FC = (props: ButtonProps) => {
-  const { buttonText, buttonType, submitFunction } = props;
+  const { buttonText, buttontype, submitFunction } = props;
   return (
     <ButtonWrapper>
-      <StyledButton type={buttonType} onClick={submitFunction}>
+      <StyledButton buttontype={buttontype} onClick={submitFunction}>
         {buttonText}
       </StyledButton>
     </ButtonWrapper>
