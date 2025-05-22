@@ -19,8 +19,8 @@ describe("Test CustomButton", () => {
         submitFunction={mockSubmitFunct}
       />
     );
-
     const buttonElement = screen.getByRole("button", { name: "run" });
+
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveTextContent("run");
   });
@@ -33,9 +33,9 @@ describe("Test CustomButton", () => {
         submitFunction={mockSubmitFunct}
       />
     );
+    const primaryButtonElement = screen.getByRole("button", { name: "run" });
 
-    const buttonElement = screen.getByRole("button", { name: "run" });
-    expect(buttonElement).toHaveAttribute("buttontype", "primary");
+    expect(primaryButtonElement).toHaveAttribute("buttontype", "primary");
 
     rerender(
       <CustomButton
@@ -44,7 +44,9 @@ describe("Test CustomButton", () => {
         submitFunction={mockSubmitFunct}
       />
     );
-    expect(buttonElement).toHaveAttribute("buttontype", "secondary");
+    const secondaryButtonElement = screen.getByRole("button", { name: "run" });
+
+    expect(secondaryButtonElement).toHaveAttribute("buttontype", "secondary");
   });
 
   it("call submit function on button click", () => {
@@ -55,6 +57,10 @@ describe("Test CustomButton", () => {
         submitFunction={mockSubmitFunct}
       />
     );
-    
+    const buttonElement = screen.getByRole("button", { name: "run" });
+
+    fireEvent.click(buttonElement);
+
+    expect(mockSubmitFunct).toHaveBeenCalledTimes(1);
   });
 });

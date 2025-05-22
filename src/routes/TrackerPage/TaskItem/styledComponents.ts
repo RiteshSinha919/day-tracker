@@ -9,7 +9,7 @@ export const TaskItemContainer = styled.div`
   margin: 12px 0;
 `;
 
-export const TaskItemContent = styled.div`
+export const TaskItemContent = styled.p`
   width: 80%;
   height: 100%;
   margin: 0 12px;
