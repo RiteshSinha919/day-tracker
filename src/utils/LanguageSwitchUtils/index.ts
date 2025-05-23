@@ -1,11 +1,8 @@
-import i18n from "i18next";
+import i18n from "../../i18n";
 
-interface LanguageSwitcherProps {
-  lang: "en" | "hi";
-}
-
-const LanguageSwitcher = ({ lang }: LanguageSwitcherProps) => {
-  const newLanguage = lang === "en" ? "hi" : "en";
+const LanguageSwitcher = () => {
+  const currentLanguage = i18n.language;
+  const newLanguage = currentLanguage === "en" ? "hi" : "en";
   i18n.changeLanguage(newLanguage);
 };
 
