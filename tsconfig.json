@@ -22,7 +22,7 @@
     "useDefineForClassFields": true,
     "types": ["cypress"]
   },
-  "include": ["src", "cypress"],
+  "include": ["src", "cypress", "sentry/SentryConfig/index.ts"],
   "exclude": [
     "node_modules/@storybook",
     "node_modules",

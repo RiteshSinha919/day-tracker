@@ -33,7 +33,11 @@ const CustomInput: React.FC<InputProps> = observer(
             placeholder={placeholderText}
           />
         </InputWrapper>
-        {errorMsg && <ErrorMessageWrapper>{errorMsg}</ErrorMessageWrapper>}
+        {errorMsg && (
+          <ErrorMessageWrapper data-test-id="input-error">
+            {errorMsg}
+          </ErrorMessageWrapper>
+        )}
       </>
     );
   }
